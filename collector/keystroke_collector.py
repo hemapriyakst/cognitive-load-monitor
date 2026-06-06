@@ -24,15 +24,18 @@ _lock = threading.Lock()
 
 
 def _get_active_app() -> str:
-    """Best-effort active process name (cross-platform)."""
+    """Get the actual foreground window's process name on Windows."""
     try:
-        # Gets foreground process name via psutil
-        for proc in psutil.process_iter(['pid', 'name', 'status']):
-            if proc.info['status'] == psutil.STATUS_RUNNING:
-                return proc.info['name']
+        import win32gui
+        import win32process
+        import psutil
+
+        hwnd = win32gui.GetForegroundWindow()
+        _, pid = win32process.GetWindowThreadProcessId(hwnd)
+        name = psutil.Process(pid).name()
+        return name
     except Exception:
-        pass
-    return "unknown"
+        return "unknown"
 
 
 def _on_key_press(key):
