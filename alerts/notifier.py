@@ -69,7 +69,7 @@ def evaluate_and_alert(fatigue_level: str):
         _last_alert_time = now
         _consecutive_high_count = 0  # reset after alert
 
-    elif fatigue_level == "medium" and cooldown_passed and _consecutive_high_count == 0:
+    elif fatigue_level == "medium" and cooldown_passed and _consecutive_high_count == 0 and _consecutive_medium_count >= 2:
         # Gentle medium-fatigue nudge (less urgent)
         message = "Cognitive load is moderate. Stay hydrated and stretch. 💧"
         send_notification("🟡 Heads Up", message)
