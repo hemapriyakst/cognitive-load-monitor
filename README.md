@@ -118,4 +118,4 @@ cognitive-load-monitor/
 ## 👤 Author
 
 Built during semester break as a portfolio project.
-Reach me at: [your email/LinkedIn]
+Reach me at: hemapriya.nkss@gmail.com
