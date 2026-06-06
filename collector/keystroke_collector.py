@@ -84,7 +84,6 @@ def flush_buffer_to_db():
 
 def start_collector():
     """Start the background keystroke listener. Non-blocking."""
-    initialize_db()
     logger.info("🎹 Keystroke collector started (no keys are recorded — timing only)")
 
     listener = keyboard.Listener(on_press=_on_key_press)
